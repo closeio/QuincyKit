@@ -468,6 +468,14 @@ const CGFloat kDetailsHeight = 285;
 	
 	NSString *userid = @"";
 	NSString *contact = @"";
+    
+    if ([_delegate delegate] != nil && [[_delegate delegate] respondsToSelector:@selector(crashReportUserID)]) {
+        userid = [[_delegate delegate] crashReportUserID] ?: @"";
+    }
+    
+    if ([_delegate delegate] != nil && [[_delegate delegate] respondsToSelector:@selector(crashReportContact)]) {
+        contact = [[_delegate delegate] crashReportContact] ?: @"";
+    }
 	
 	NSString *notes = [NSString stringWithFormat:@"Comments:\n%@\n\nConsole:\n%@", [descriptionTextField stringValue], _consoleContent];	
 	
